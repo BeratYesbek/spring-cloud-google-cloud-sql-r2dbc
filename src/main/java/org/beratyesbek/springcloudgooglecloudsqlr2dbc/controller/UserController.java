@@ -18,6 +18,7 @@ public class UserController {
 
     @GetMapping
     public Flux<User> findAll() {
+        System.out.println(Thread.currentThread().getName() + " - START R2DBC Query");
         return userRepository.findAll().doOnNext(
                 user -> System.out.println(Thread.currentThread().getName() + " - User: " + user)
         );
